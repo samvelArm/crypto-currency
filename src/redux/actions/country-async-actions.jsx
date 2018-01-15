@@ -1,36 +1,34 @@
 import { getCountry } from "./country";
 import 'whatwg-fetch';
 
-import { validCountryCode } from "./utils";
-
-export const getCountryData = (code) => {
+export const getStatsData = (code) => {
   return (dispatch) => {
-    if (validCountryCode(code)) {
-
       dispatch(getCountry.request());
 
-      const url = `/matches/country?fifa_code=${code}`
+      const url = `/bitfinex/book/btcusd`
 
-      fetch(url).then((data) => {
+      fetch(url, {
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      }).then((data) => {
+          console.log('data=', data);
         data.json().then((jsonData) => {
+            console.log('jsonData=', jsonData);
 
           dispatch(getCountry.success(jsonData))
 
-        }).catch(() => {
-
-          dispatch(getCountry.failure('Not Found Please try other FIFA code'))
+        }).catch((e) => {
+            console.log('e=', e);
+          dispatch(getCountry.failure('Not Found'))
 
         })
       }).catch((error) => {
+          console.log('error=', error);
 
         dispatch(getCountry.failure(error.message))
 
       })
-    } else {
-
-      dispatch(getCountry.failure('Country Code Must Be a String of 3 characters'))
-
-    }
   }
 }
 

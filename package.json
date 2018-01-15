@@ -35,5 +35,8 @@
     "webpack": "^3.9.1",
     "webpack-dev-middleware": "^1.12.2",
     "whatwg-fetch": "2.0.3"
+  },
+  "dependencies": {
+    "material-ui": "^0.20.0"
   }
 }

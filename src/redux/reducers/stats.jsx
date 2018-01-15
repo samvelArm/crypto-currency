@@ -1,7 +1,7 @@
 import {
-  GET_COUNTRY_REQUEST,
-  GET_COUNTRY_FAILURE,
-  GET_COUNTRY_SUCCESS
+  GET_STATS_REQUEST,
+  GET_STATS_SUCCESS,
+  GET_STATS_FAILURE
 } from "../actions/action-types";
 
 const initialState = {
@@ -13,20 +13,20 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_COUNTRY_REQUEST:
+    case GET_STATS_REQUEST:
       return {
         ...state,
         isLoading: true,
         errorMessage: ''
       }
-    case GET_COUNTRY_SUCCESS:
+    case GET_STATS_SUCCESS:
       return {
         ...state,
         isLoading: false,
         data: action.payload,
         errorMessage: ''
       }
-    case GET_COUNTRY_FAILURE:
+    case GET_STATS_FAILURE:
       return {
         ...state,
         isLoading: false,

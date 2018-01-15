@@ -1,11 +1,11 @@
 import {
-  GET_COUNTRY_REQUEST,
-  GET_COUNTRY_SUCCESS,
-  GET_COUNTRY_FAILURE
+  GET_STATS_REQUEST,
+  GET_STATS_SUCCESS,
+  GET_STATS_FAILURE
 } from "./action-types";
 
 export const getCountry = {
-  request: () => ({type: GET_COUNTRY_REQUEST}),
-  success: (data) => ({type: GET_COUNTRY_SUCCESS, payload: data}),
-  failure: (error) => ({type: GET_COUNTRY_FAILURE, payload: error})
+  request: () => ({type: GET_STATS_REQUEST}),
+  success: (data) => ({type: GET_STATS_SUCCESS, payload: data}),
+  failure: (error) => ({type: GET_STATS_FAILURE, payload: error})
 }

@@ -20,12 +20,14 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(express.static(__dirname + '/www'));
 
-app.use('/matches*', proxy({
-  target: 'http://worldcup.sfg.io', changeOrigin: true
+app.use('/bitfinex/book/btcusd', proxy({
+  target: 'https://api.bitfinex.com/v1/book/btcusd',
+  changeOrigin: true,
+  logLevel: 'debug'
 }))
 
 const server = app.listen(3000, function() {
   const host = server.address().address;
   const port = server.address().port;
-  console.log('Example app listening at http://%s:%s', host, port);
+  console.log('Example app listening at http://localhost', host, port);
 });
