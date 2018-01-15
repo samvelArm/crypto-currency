@@ -9,6 +9,8 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
+import Timer from './Timer/Timer';
+
 class Main extends React.Component {
   constructor() {
     super();
@@ -53,51 +55,56 @@ class Main extends React.Component {
   })
     return (
         <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <div className="bids-section">
-                <h1>
-                    Bids
-                </h1>
-                <Table>
-                  <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-                      <TableRow>
-                          <TableHeaderColumn>
-                            Amount
-                          </TableHeaderColumn>
-                          <TableHeaderColumn>
-                            Price
-                          </TableHeaderColumn>
-                          <TableHeaderColumn>
-                            timestamp
-                          </TableHeaderColumn>
-                      </TableRow>
-                  </TableHeader>
-                  <TableBody displayRowCheckbox={false}>
-                      {mappedBids}
-                  </TableBody>
-                </Table>
-            </div>
-            <div className="asks-section">
-                <h1>
-                    Asks
-                </h1>
-                <Table>
-                    <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-                        <TableRow>
-                            <TableHeaderColumn>
-                                Amount
-                            </TableHeaderColumn>
-                            <TableHeaderColumn>
-                                Price
-                            </TableHeaderColumn>
-                            <TableHeaderColumn>
-                                timestamp
-                            </TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody displayRowCheckbox={false}>
-                        {mappedAsks}
-                    </TableBody>
-                </Table>
+            <div>
+                <div>
+                    <Timer {...this.props}/>
+                </div>
+                <div className="bids-section">
+                    <h1>
+                        Bids
+                    </h1>
+                    <Table>
+                        <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                            <TableRow>
+                                <TableHeaderColumn>
+                                    Amount
+                                </TableHeaderColumn>
+                                <TableHeaderColumn>
+                                    Price
+                                </TableHeaderColumn>
+                                <TableHeaderColumn>
+                                    timestamp
+                                </TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody displayRowCheckbox={false}>
+                            {mappedBids}
+                        </TableBody>
+                    </Table>
+                </div>
+                <div className="asks-section">
+                    <h1>
+                        Asks
+                    </h1>
+                    <Table>
+                        <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                            <TableRow>
+                                <TableHeaderColumn>
+                                    Amount
+                                </TableHeaderColumn>
+                                <TableHeaderColumn>
+                                    Price
+                                </TableHeaderColumn>
+                                <TableHeaderColumn>
+                                    timestamp
+                                </TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody displayRowCheckbox={false}>
+                            {mappedAsks}
+                        </TableBody>
+                    </Table>
+                </div>
             </div>
         </MuiThemeProvider>
     );
