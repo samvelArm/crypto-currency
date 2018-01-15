@@ -54,7 +54,7 @@ export default class Timer extends Component {
         return (
             <div className="timer">
                 <h1>Next Reload in {time}</h1>
-                {!this.props.isLoading && <CircularProgress size={28} thickness={3} className="loading" /> }
+                {this.props.isLoading && <CircularProgress size={28} thickness={3} className="loading" /> }
             </div>
         );
     }
