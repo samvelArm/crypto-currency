@@ -1,33 +1,26 @@
-import { getCountry } from "./country";
+import { getStats } from "./stats";
 import 'whatwg-fetch';
 
 export const getStatsData = (code) => {
   return (dispatch) => {
-      dispatch(getCountry.request());
+      dispatch(getStats.request());
 
       const url = `/bitfinex/book/btcusd`
 
       fetch(url, {
+          method: 'GET',
           headers: {
               'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*'
           },
       }).then((data) => {
-          console.log('data=', data);
         data.json().then((jsonData) => {
-            console.log('jsonData=', jsonData);
-
-          dispatch(getCountry.success(jsonData))
-
-        }).catch((e) => {
-            console.log('e=', e);
-          dispatch(getCountry.failure('Not Found'))
-
+          dispatch(getStats.success(jsonData))
+        }).catch(() => {
+          dispatch(getStats.failure('Not Found'))
         })
       }).catch((error) => {
-          console.log('error=', error);
-
-        dispatch(getCountry.failure(error.message))
-
+        dispatch(getStats.failure(error.message))
       })
   }
 }

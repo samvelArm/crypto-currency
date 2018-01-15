@@ -20,10 +20,10 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(express.static(__dirname + '/www'));
 
-app.use('/bitfinex/book/btcusd', proxy({
-  target: 'https://api.bitfinex.com/v1/book/btcusd',
+app.use('/bitfinex', proxy({
+  target: 'https://api.bitfinex.com/v1',
   changeOrigin: true,
-  logLevel: 'debug'
+  pathRewrite: {'/bitfinex': ''}
 }))
 
 const server = app.listen(3000, function() {

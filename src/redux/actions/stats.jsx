@@ -4,7 +4,7 @@ import {
   GET_STATS_FAILURE
 } from "./action-types";
 
-export const getCountry = {
+export const getStats = {
   request: () => ({type: GET_STATS_REQUEST}),
   success: (data) => ({type: GET_STATS_SUCCESS, payload: data}),
   failure: (error) => ({type: GET_STATS_FAILURE, payload: error})
