@@ -48,7 +48,7 @@ class LoadingWithStream extends React.Component {
         return (
             <div>
                 <div>
-                    <h1 className="stream-header">Streaming</h1>
+                    <h1 className="stream-header">Streaming {this.props.isStarted ? this.props.dataNumber : ''}</h1>
                 </div>
                 <div className="bids-section">
                     <h1>
@@ -104,7 +104,8 @@ class LoadingWithStream extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isStarted: state.streamStats.isStarted,
-        data: state.streamStats.streamData
+        data: state.streamStats.streamData,
+        dataNumber: state.streamStats.dataNumber
     }
 }
 

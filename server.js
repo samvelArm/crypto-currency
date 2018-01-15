@@ -170,7 +170,7 @@ wss.on('connection', function connection(ws) {
             try {
                 ws.send(JSON.stringify(BOOK));
             } catch (e) {
-                console.log('error=', error);
+                console.log('error=', e);
             }
         } else {
             clearInterval(interval);

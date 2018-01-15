@@ -8,11 +8,13 @@ const initialState = {
         bids: [],
         asks: []
     },
-    isStarted: false
+    isStarted: false,
+    dataNumber: 0,
 }
 
 
 export default (state = initialState, action) => {
+    console.log('state=', state);
     switch (action.type) {
         case GET_STATS_STREAM_START:
             return {
@@ -22,7 +24,8 @@ export default (state = initialState, action) => {
         case GET_STATS_STREAM_UPDATE:
             return {
                 ...state,
-                streamData: action.payload
+                streamData: action.payload,
+                dataNumber: state.dataNumber + 1
             };
         default:
             return state;
