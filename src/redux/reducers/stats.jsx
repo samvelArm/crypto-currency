@@ -5,7 +5,10 @@ import {
 } from "../actions/action-types";
 
 const initialState = {
-  data: [],
+  data: {
+    bids: [],
+    asks: []
+  },
   isLoading: false,
   errorMessage: ''
 }
