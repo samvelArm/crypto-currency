@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import {getStatsData} from '../../redux/actions/bitfinex-async-actions';
+import {getStreamData} from '../../redux/actions/bitfinex-async-actions';
 import './LoadingWithStream.less';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn, } from 'material-ui/Table';
 
@@ -11,13 +11,13 @@ class LoadingWithStream extends React.Component {
     }
 
     componentWillMount() {
-        this.props.getStatsData();
+        this.props.getStreamData();
     }
 
     render() {
-        const mappedBids = this.props.data.bids.map((bid, index) => {
+        const mappedBids = this.props.data.bids.map((bid) => {
             return(
-                <TableRow key={index}>
+                <TableRow key={bid.index}>
                     <TableRowColumn>
                         {bid.amount}
                     </TableRowColumn>
@@ -30,9 +30,9 @@ class LoadingWithStream extends React.Component {
                 </TableRow>
             )
         })
-        const mappedAsks = this.props.data.asks.map((ask, index) => {
+        const mappedAsks = this.props.data.asks.map((ask) => {
             return(
-                <TableRow key={index}>
+                <TableRow key={ask.index}>
                     <TableRowColumn>
                         {ask.amount}
                     </TableRowColumn>
@@ -103,15 +103,14 @@ class LoadingWithStream extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLoading: state.stats.isLoading,
-        errorMessage: state.stats.errorMessage,
-        data: state.stats.data
+        isStarted: state.streamStats.isStarted,
+        data: state.streamStats.streamData
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getStatsData: (code) => dispatch(getStatsData(code))
+        getStreamData: () => dispatch(getStreamData())
     }
 }
 
