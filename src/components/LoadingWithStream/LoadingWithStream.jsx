@@ -64,12 +64,15 @@ class LoadingWithStream extends React.Component {
         return (
             <div>
                 <div>
-                    <h1 className="stream-header">Streaming {this.props.isStarted ? this.props.dataNumber : ''}</h1>
+                    <h1 className="stream-header">Order Book</h1>
+                </div>
+                <div>
+                    <h2 className="stream-header">Streaming {this.props.isStarted ? this.props.dataNumber : ''}</h2>
                 </div>
                 <div className="bids-section">
-                    <h1>
+                    <h3>
                         Bids
-                    </h1>
+                    </h3>
                     <Table>
                         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                             <TableRow>
@@ -90,9 +93,9 @@ class LoadingWithStream extends React.Component {
                     </Table>
                 </div>
                 <div className="asks-section">
-                    <h1>
+                    <h3>
                         Asks
-                    </h1>
+                    </h3>
                     <Table>
                         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                             <TableRow>
