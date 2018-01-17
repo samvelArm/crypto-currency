@@ -15,32 +15,48 @@ class LoadingWithStream extends React.Component {
     }
 
     render() {
-        const mappedBids = this.props.data.bids.map((bid) => {
+        const mappedBids = this.props.data.bids.sort((a, b) => {
+            if (a.price > b.price) {
+                return 1;
+            }
+            if (a.price < b.price) {
+                return -1;
+            }
+            return 0;
+        }).map((bid) => {
             return(
-                <TableRow key={bid.index}>
-                    <TableRowColumn>
-                        {bid.amount}
-                    </TableRowColumn>
+                <TableRow key={bid.price}>
                     <TableRowColumn>
                         {bid.price}
                     </TableRowColumn>
                     <TableRowColumn>
-                        {bid.timestamp}
+                        {bid.amount}
+                    </TableRowColumn>
+                    <TableRowColumn>
+                        {bid.count}
                     </TableRowColumn>
                 </TableRow>
             )
         })
-        const mappedAsks = this.props.data.asks.map((ask) => {
+        const mappedAsks = this.props.data.asks.sort((a, b) => {
+            if (a.price > b.price) {
+                return 1;
+            }
+            if (a.price < b.price) {
+                return -1;
+            }
+            return 0;
+        }).map((ask) => {
             return(
-                <TableRow key={ask.index}>
-                    <TableRowColumn>
-                        {ask.amount}
-                    </TableRowColumn>
+                <TableRow key={ask.price}>
                     <TableRowColumn>
                         {ask.price}
                     </TableRowColumn>
                     <TableRowColumn>
-                        {ask.timestamp}
+                        {ask.amount}
+                    </TableRowColumn>
+                    <TableRowColumn>
+                        {ask.count}
                     </TableRowColumn>
                 </TableRow>
             )
@@ -58,13 +74,13 @@ class LoadingWithStream extends React.Component {
                         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                             <TableRow>
                                 <TableHeaderColumn>
-                                    Amount
-                                </TableHeaderColumn>
-                                <TableHeaderColumn>
                                     Price
                                 </TableHeaderColumn>
                                 <TableHeaderColumn>
-                                    timestamp
+                                    Amount
+                                </TableHeaderColumn>
+                                <TableHeaderColumn>
+                                    Count
                                 </TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
@@ -81,13 +97,13 @@ class LoadingWithStream extends React.Component {
                         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                             <TableRow>
                                 <TableHeaderColumn>
-                                    Amount
-                                </TableHeaderColumn>
-                                <TableHeaderColumn>
                                     Price
                                 </TableHeaderColumn>
                                 <TableHeaderColumn>
-                                    timestamp
+                                    Amount
+                                </TableHeaderColumn>
+                                <TableHeaderColumn>
+                                    Count
                                 </TableHeaderColumn>
                             </TableRow>
                         </TableHeader>

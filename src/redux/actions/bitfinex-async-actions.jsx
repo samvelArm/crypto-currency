@@ -53,17 +53,11 @@ export const getStreamData = () => {
             console.log('data.asks=', data.asks);
 
             Object.keys(data.asks).forEach((key) => {
-                dataToSend.asks.push({
-                    ...data.asks[key],
-                    index: key
-                })
+                dataToSend.asks.push(data.asks[key]);
             })
 
             Object.keys(data.bids).forEach((key) => {
-                dataToSend.bids.push({
-                    ...data.bids[key],
-                    index: key
-                })
+                dataToSend.bids.push(data.bids[key]);
             })
 
             dispatch(getStream.success(dataToSend))
