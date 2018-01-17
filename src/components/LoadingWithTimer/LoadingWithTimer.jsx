@@ -16,32 +16,48 @@ class LoadingWithTimer extends React.Component {
     }
 
     render() {
-        const mappedBids = this.props.data.bids.map((bid, index) => {
+        const mappedBids = this.props.data.bids.sort((a, b) => {
+            if (a.price > b.price) {
+                return 1;
+            }
+            if (a.price < b.price) {
+                return -1;
+            }
+            return 0;
+        }).map((bid) => {
             return(
-                <TableRow key={index}>
-                    <TableRowColumn>
-                        {bid.amount}
-                    </TableRowColumn>
+                <TableRow key={bid.price}>
                     <TableRowColumn>
                         {bid.price}
                     </TableRowColumn>
                     <TableRowColumn>
-                        {bid.timestamp}
+                        {bid.count}
+                    </TableRowColumn>
+                    <TableRowColumn>
+                        {bid.amount}
                     </TableRowColumn>
                 </TableRow>
             )
         })
-        const mappedAsks = this.props.data.asks.map((ask, index) => {
+        const mappedAsks = this.props.data.asks.sort((a, b) => {
+            if (a.price > b.price) {
+                return 1;
+            }
+            if (a.price < b.price) {
+                return -1;
+            }
+            return 0;
+        }).map((ask) => {
             return(
-                <TableRow key={index}>
-                    <TableRowColumn>
-                        {ask.amount}
-                    </TableRowColumn>
+                <TableRow key={ask.price}>
                     <TableRowColumn>
                         {ask.price}
                     </TableRowColumn>
                     <TableRowColumn>
-                        {ask.timestamp}
+                        {ask.count}
+                    </TableRowColumn>
+                    <TableRowColumn>
+                        {ask.amount}
                     </TableRowColumn>
                 </TableRow>
             )
@@ -49,23 +65,26 @@ class LoadingWithTimer extends React.Component {
         return (
             <div>
                 <div>
+                    <h1 align="center">Order Book</h1>
+                </div>
+                <div>
                     <Timer {...this.props}/>
                 </div>
                 <div className="bids-section">
-                    <h1>
+                    <h3>
                         Bids
-                    </h1>
+                    </h3>
                     <Table>
                         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                             <TableRow>
                                 <TableHeaderColumn>
-                                    Amount
-                                </TableHeaderColumn>
-                                <TableHeaderColumn>
                                     Price
                                 </TableHeaderColumn>
                                 <TableHeaderColumn>
-                                    timestamp
+                                    Count
+                                </TableHeaderColumn>
+                                <TableHeaderColumn>
+                                    Amount
                                 </TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
@@ -75,20 +94,20 @@ class LoadingWithTimer extends React.Component {
                     </Table>
                 </div>
                 <div className="asks-section">
-                    <h1>
+                    <h3>
                         Asks
-                    </h1>
+                    </h3>
                     <Table>
                         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                             <TableRow>
                                 <TableHeaderColumn>
-                                    Amount
-                                </TableHeaderColumn>
-                                <TableHeaderColumn>
                                     Price
                                 </TableHeaderColumn>
                                 <TableHeaderColumn>
-                                    timestamp
+                                    Count
+                                </TableHeaderColumn>
+                                <TableHeaderColumn>
+                                    Amount
                                 </TableHeaderColumn>
                             </TableRow>
                         </TableHeader>

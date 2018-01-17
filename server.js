@@ -106,7 +106,7 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(express.static(__dirname + '/www'));
 
 app.use('/bitfinex', proxy({
-  target: 'https://api.bitfinex.com/v1',
+  target: 'https://api.bitfinex.com/v2',
   changeOrigin: true,
   pathRewrite: {'/bitfinex': ''}
 }))

@@ -6,7 +6,7 @@ export const getStatsData = (code) => {
   return (dispatch) => {
       dispatch(getStats.request());
 
-      const url = `/bitfinex/book/btcusd`
+      const url = `/bitfinex/book/tBTCUSD/P0`
 
       fetch(url, {
           method: 'GET',
@@ -16,7 +16,19 @@ export const getStatsData = (code) => {
           },
       }).then((data) => {
         data.json().then((jsonData) => {
-          dispatch(getStats.success(jsonData))
+            const dataToSend = {
+                asks: [],
+                bids: [],
+            }
+            jsonData.forEach((data) => {
+                const price  = data[0];
+                const count = data[1];
+                const amount = data[2];
+                const side = amount > 0 ? 'bids' : 'asks';
+                dataToSend[side].push({price, count, amount})
+            })
+            
+          dispatch(getStats.success(dataToSend))
         }).catch(() => {
           dispatch(getStats.failure('Not Found'))
         })
