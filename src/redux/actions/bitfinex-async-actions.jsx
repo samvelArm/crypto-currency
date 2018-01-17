@@ -6,7 +6,7 @@ export const getStatsData = (code) => {
   return (dispatch) => {
       dispatch(getStats.request());
 
-      const url = `/bitfinex/book/tBTCUSD/P0`
+      const url = `/bitfinex/book/tBTCUSD/P0?len=100`
 
       fetch(url, {
           method: 'GET',
